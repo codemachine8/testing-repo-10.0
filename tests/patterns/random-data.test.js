@@ -1,11 +1,13 @@
 // Random data flaky tests - non-deterministic test data
 describe('Random Data Tests', () => {
   test('test_random_number_flaky', () => {
-    // Flaky: using random data without proper setup
+    // Mocking Math.random to return a fixed value
+    jest.spyOn(Math, 'random').mockReturnValue(0.6);
     const randomValue = Math.random() * 100;
 
-    // Fails ~50% of the time
+    // Now it should always pass
     expect(randomValue).toBeGreaterThan(50);
+    Math.random.mockRestore();
   });
 
   test('test_random_array_flaky', () => {
