@@ -7,7 +7,7 @@ Python tests using relative imports (`from .helpers import ...`) were failing wi
 ImportError: attempted relative import with no known parent package
 ```
  
-## ❌ Wrong Solution (Initial Approach) 
+## ❌ Wrong Solution (Initial Approach)  
 
 **What I did wrong**: Modified the test file to use absolute imports with sys.path manipulation.
 
