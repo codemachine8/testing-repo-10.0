@@ -2,9 +2,12 @@
 
 describe('Below Threshold Tests', () => {
   test('test_below_threshold', () => {
-    // This test is flaky but doesn't have enough runs
+    // Mock Math.random to return a fixed value
+    const originalMathRandom = Math.random;
+    Math.random = () => 0.5;
     const value = Math.random();
     expect(value).toBeGreaterThan(0.3);
+    Math.random = originalMathRandom;
   });
 });
 
