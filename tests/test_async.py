@@ -7,7 +7,7 @@ import asyncio
 class MockUser:
     def __init__(self, email):
         self.email = email
-        self.is_logged_in = random.random() > 0.3  # Flaky: 30% chance of failure
+        self.is_logged_in = True  # Ensure deterministic behavior for testing
 
 async def login_user(email):
     """Async login function that's flaky"""
