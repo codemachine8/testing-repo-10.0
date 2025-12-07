@@ -36,12 +36,12 @@ describe('Hash Change Detection Tests', () => {
   test('test_hash_flaky_with_imports', () => {
     // Flaky test with imports
     // Hash should include all import dependencies
-    if (Math.random() < 0.3) {
-      throw new Error('Intentional flaky failure');
-    }
+    jest.spyOn(Math, 'random').mockReturnValue(0.5);
 
     const result = moduleAFunction();
     expect(result.length).toBeGreaterThan(0);
+
+    Math.random.mockRestore();
   });
 
   // MODIFICATION INSTRUCTIONS FOR VALIDATION:
