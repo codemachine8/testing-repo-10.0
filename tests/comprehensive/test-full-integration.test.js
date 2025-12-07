@@ -169,8 +169,11 @@ describe('Comprehensive Integration Tests', () => {
     // 2. Deep dependency failure
     // 3. Async timing issue
 
+    // Mocked random flakiness for deterministic behavior
+    const randomValue = 0.1; // Fixed value to avoid randomness
+
     // Random flakiness
-    if (Math.random() < 0.25) {
+    if (randomValue < 0.25) {
       throw new Error('Random failure point 1');
     }
 
@@ -178,15 +181,15 @@ describe('Comprehensive Integration Tests', () => {
     try {
       level4Transaction();
     } catch (e) {
-      if (Math.random() < 0.5) {
+      if (randomValue < 0.5) {
         throw new Error('Cascading failure from deep dependency');
       }
     }
 
     // Timing flakiness
-    await new Promise(resolve => setTimeout(resolve, Math.random() * 50));
+    await new Promise(resolve => setTimeout(resolve, 25)); // Fixed delay
 
-    if (Math.random() < 0.2) {
+    if (randomValue < 0.2) {
       throw new Error('Timing-related failure');
     }
 
